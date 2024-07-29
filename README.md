@@ -17,10 +17,10 @@ This project implements a novel approach to artificial intelligence by simulatin
 - Population-based training using genetic algorithms
 
 ## Project Structure
-
+Scripts other than the base Brain Simulation coming soon...
 ```
 brain_simulation/
-├── brain_simulation.py    # Main simulation class and component models
+├── brainsimulation.py    # Main simulation class and component models
 ├── evolution.py           # Evolutionary algorithm implementation
 ├── evaluation.py          # Placeholder for evaluation functions
 └── main.py                # Example usage and main execution
