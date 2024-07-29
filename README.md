@@ -19,7 +19,7 @@ This project implements a novel approach to artificial intelligence by simulatin
 ## Project Structure
 Scripts other than the base Brain Simulation coming soon...
 ```
-brain_simulation/
+Brain-AI/
 ├── brainsimulation.py    # Main simulation class and component models
 ├── evolution.py           # Evolutionary algorithm implementation
 ├── evaluation.py          # Placeholder for evaluation functions
