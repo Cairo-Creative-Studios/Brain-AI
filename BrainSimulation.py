@@ -54,6 +54,8 @@ class TransformerModel(nn.Module):
     def __init__(self, num_neurons, complexity, input_size, output_size):
         super().__init__()
         self.num_layers = complexity
+        self.input_size = input_size
+        self.output_size = output_size
         neurons_per_layer = max(1, num_neurons // self.num_layers)
         
         self.layers = nn.ModuleList([
@@ -73,6 +75,9 @@ class CerebellumModel(nn.Module):
         self.adaptive_filter = nn.Linear(input_size, num_neurons)
         self.echo_state = nn.RNN(num_neurons, num_neurons, num_layers=complexity, nonlinearity='tanh')
         self.fc_out = nn.Linear(num_neurons, output_size)
+        self.output_size = output_size
+        self.input_size = input_size
+        
 
     def forward(self, x):
         x = torch.tanh(self.adaptive_filter(x))
@@ -85,6 +90,9 @@ class LSTMWithAttention(nn.Module):
         self.lstm = nn.LSTM(input_size, num_neurons, num_layers=complexity)
         self.attention = nn.MultiheadAttention(num_neurons, num_heads=1)
         self.fc_out = nn.Linear(num_neurons, output_size)
+        self.output_size = output_size
+        self.input_size = input_size
+        
 
     def forward(self, x):
         x, _ = self.lstm(x)
@@ -99,6 +107,9 @@ class QLearningModel(nn.Module):
             layers.extend([nn.Linear(num_neurons, num_neurons), nn.ReLU()])
         layers.append(nn.Linear(num_neurons, output_size))
         self.q_network = nn.Sequential(*layers)
+        self.output_size = output_size
+        self.input_size = input_size
+        
 
     def forward(self, x):
         return self.q_network(x)
@@ -108,6 +119,9 @@ class ThalamusModel(nn.Module):
         super().__init__()
         self.lstm = nn.LSTM(input_size, num_neurons, num_layers=complexity)
         self.fc_out = nn.Linear(num_neurons, output_size)
+        self.output_size = output_size
+        self.input_size = input_size
+        
 
     def forward(self, x):
         x, _ = self.lstm(x)
@@ -162,10 +176,10 @@ def example_evaluation_function(brain):
     return random.random()  # Returns a random score between 0 and 1
 
 if __name__ == "__main__":
-    population_size = 100
-    total_neurons = 100000
+    population_size = 10
+    total_neurons = 1000
     complexity = 5
-    input_size = 100
+    input_size = 10
     output_size = 10
 
     initial_population = create_population(population_size, total_neurons, complexity, input_size, output_size)
