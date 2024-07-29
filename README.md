@@ -50,10 +50,10 @@ Brain-AI/
 To run the simulation with default parameters:
 
 ```python
-python main.py
+python brainsimulation.py
 ```
 
-To customize the simulation, you can modify the parameters in `main.py`:
+To customize the simulation, you can modify the parameters in `brainsimulation.py`:
 
 ```python
 population_size = 100
